@@ -6,9 +6,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVReader;
@@ -16,10 +18,12 @@ import com.opencsv.CSVReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMarkerClickListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Facility[] mFacility = new Facility[62];
+    private int N = 62; //施設数
+    private Facility[] mFacility = new Facility[N];
+    private Marker[] mMarker = new Marker[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
 
     @Override
@@ -55,15 +59,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(osakacityhall).title("大阪市役所"));
 
         //スポーツセンターのマーカー描画
-        for (int i=0; i<61; i++){
+        for (int i=0; i<N-1; i++){
             //読み込み完了してれば実行。これしないと先にここが処理され、nullpointerExceptionエラーになる
             if ( mLoadCSV ) {
                 LatLng _latlng = new LatLng(mFacility[i].lat, mFacility[i].lng);
-                mMap.addMarker(new MarkerOptions().position(_latlng).title(mFacility[i].name));
+                mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).title(mFacility[i].name));
+                mMarker[i].setTag(i);
             }
         }
 
+        mMap.setOnMarkerClickListener(this);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(osakacityhall, 12));
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker){
+        Integer num = (Integer)marker.getTag();
+
+        Toast.makeText(this, marker.getTitle()+"がクリックされた:num="+String.valueOf(num), Toast.LENGTH_SHORT).show();
+
+        // Return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return false;
     }
 
     public void loadCSV(String filename){
