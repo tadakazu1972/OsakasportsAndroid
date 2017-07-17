@@ -1,5 +1,6 @@
 package tadakazu1972.osakasports;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
@@ -26,11 +27,16 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
     private Facility[] mFacility = new Facility[N];
     private Marker[] mMarker = new Marker[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
-
+    private int num; //マーカー色判定用を前ページから格納
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_maps);
+
+        //HomeActivityからの値受け取り
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num", 0);
 
         //施設CSVファイル読み込み
         loadCSV("facilities.csv");
@@ -64,7 +70,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
             //読み込み完了してれば実行。これしないと先にここが処理され、nullpointerExceptionエラーになる
             if ( mLoadCSV ) {
                 LatLng _latlng = new LatLng(mFacility[i].lat, mFacility[i].lng);
-                if (mFacility[i].category[0]) {
+                if (mFacility[i].category[num]) {
                     mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).title(mFacility[i].name));
                 } else {
                     mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).

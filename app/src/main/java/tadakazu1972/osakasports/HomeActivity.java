@@ -27,10 +27,33 @@ public class HomeActivity extends AppCompatActivity {
 
     //ボタン設定
     private void initButtons(){
+        //
         mView.findViewById(R.id.btnTaiken).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",10);
+                startActivity(intent);
+            }
+        });
+        //
+        mView.findViewById(R.id.btnWakaimon).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",7);
+                startActivity(intent);
+            }
+        });
+        //
+        mView.findViewById(R.id.btnKodomo).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",9);
                 startActivity(intent);
             }
         });
