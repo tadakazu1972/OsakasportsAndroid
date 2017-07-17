@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
  */
 
 public class HomeActivity extends AppCompatActivity {
+
     private HomeActivity mActivity = null;
     private View mView = null;
 

@@ -28,6 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
     private Marker[] mMarker = new Marker[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
     private int num; //マーカー色判定用を前ページから格納
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +91,11 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
         Integer num = (Integer)marker.getTag();
 
         Toast.makeText(this, marker.getTitle()+"がクリックされた:num="+String.valueOf(num), Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, FacilityActivity.class);
+        //該当イベント判定用
+        intent.putExtra("num",num);
+        startActivity(intent);
 
         // Return false to indicate that we have not consumed the event and that we wish
         // for the default behavior to occur (which is for the camera to move such that the
