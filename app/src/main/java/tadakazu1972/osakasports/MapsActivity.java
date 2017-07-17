@@ -9,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -63,7 +64,13 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
             //読み込み完了してれば実行。これしないと先にここが処理され、nullpointerExceptionエラーになる
             if ( mLoadCSV ) {
                 LatLng _latlng = new LatLng(mFacility[i].lat, mFacility[i].lng);
-                mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).title(mFacility[i].name));
+                if (mFacility[i].category[0]) {
+                    mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).title(mFacility[i].name));
+                } else {
+                    mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).
+                                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).
+                                        title(mFacility[i].name));
+                }
                 mMarker[i].setTag(i);
             }
         }
@@ -95,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
                 CSVReader csvr = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
                 String[] csv;
                 while((csv = csvr.readNext()) != null){
-                    mFacility[i] = new Facility(csv[0], csv[1], csv[2]);
+                    mFacility[i] = new Facility(csv[0], csv[1], csv[2], csv[3], csv[4], csv[5], csv[6], csv[7], csv[8], csv[9], csv[10], csv[11], csv[12], csv[13], csv[14]);
                     i++;
                 }
             } finally {
