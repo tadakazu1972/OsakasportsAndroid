@@ -1,6 +1,7 @@
 package tadakazu1972.osakasports;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,11 @@ public class EventDataAdapter extends BaseAdapter {
 
         ((TextView)convertView.findViewById(R.id.eventDate)).setText(eventDataList.get(position).date);
         ((TextView)convertView.findViewById(R.id.eventName)).setText(eventDataList.get(position).name);
+
+        //動的に背景色をつける　クラスの値を操作しておくこと
+        if (eventDataList.get(position).color){
+            convertView.setBackgroundColor(Color.rgb(248, 168, 133));
+        }
 
         return convertView;
     }

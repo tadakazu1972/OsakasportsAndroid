@@ -64,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
 
         // Add a marker in 大阪市役所 and move the camera
         LatLng osakacityhall = new LatLng(34.694062, 135.502154);
-        mMap.addMarker(new MarkerOptions().position(osakacityhall).title("大阪市役所"));
+        //mMap.addMarker(new MarkerOptions().position(osakacityhall).title("大阪市役所"));
 
         //スポーツセンターのマーカー描画
         for (int i=0; i<N-1; i++){
@@ -88,13 +88,15 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
 
     @Override
     public boolean onMarkerClick(final Marker marker){
-        Integer num = (Integer)marker.getTag();
+        Integer i = (Integer)marker.getTag();
+        String name = mFacility[i].name;
 
-        Toast.makeText(this, marker.getTitle()+"がクリックされた:num="+String.valueOf(num), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, marker.getTitle()+"がクリックされた", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, FacilityActivity.class);
         //該当イベント判定用
-        intent.putExtra("num",num);
+        intent.putExtra("name", name); //施設名
+        intent.putExtra("num", num); //Homeから受け継いだnumをさらに次へ渡す
         startActivity(intent);
 
         // Return false to indicate that we have not consumed the event and that we wish

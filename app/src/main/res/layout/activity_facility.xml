@@ -6,11 +6,17 @@
     <TextView
         android:id="@+id/txtFacilityName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:background="#bcbcbc"
+        android:padding="8dp"/>
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"/>
 
 </LinearLayout>
