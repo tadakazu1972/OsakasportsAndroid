@@ -1,8 +1,11 @@
 package tadakazu1972.osakasports;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,8 +66,26 @@ public class FacilityActivity extends AppCompatActivity {
         EventDataAdapter adapter = new EventDataAdapter(FacilityActivity.this);
         adapter.setEventDataList(list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                showEventData(id);
+                Toast.makeText(FacilityActivity.this, "タップされました:id="+String.valueOf(id), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-
+    public void showEventData(long id){
+        int i = (int)id-1; //この-1はlong idとの関係で調整いるよ
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(mEventData[i].name);
+        String s;
+        s = mEventData[i].date+"\n"+mEventData[i].time+"\n"+mEventData[i].facility+"\n"+mEventData[i].submit+"\n"+mEventData[i].fee+"\n"+mEventData[i].target+"\n"+mEventData[i].station+"\n"+mEventData[i].address;
+        builder.setMessage(s);
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
     }
 
 
