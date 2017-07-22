@@ -58,5 +58,12 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mView.findViewById(R.id.btnSearch).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -70,13 +70,13 @@
 
     </LinearLayout>
     <Button
+        android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="詳細検索へ"
         android:textSize="20sp"
         android:textColor="#ffffff"
-        android:background="@drawable/button_search"
-        android:id="@+id/btnSearch"/>
+        android:background="@drawable/button_search"/>
 
 </LinearLayout>

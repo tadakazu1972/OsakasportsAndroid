@@ -60,4 +60,9 @@ public class EventData {
         if (_cat11.equals("1")) { category[11] = true; } else { category[11] = false; }
         color = false;
     }
+
+    protected String getAllString(){
+        String allString = facility+place+name+type+top+date+time+submit+fee+target+station+address+tel+question+etc;
+        return allString;
+    }
 }
