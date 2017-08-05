@@ -2,9 +2,11 @@ package tadakazu1972.osakasports;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +34,13 @@ public class FacilityActivity extends AppCompatActivity {
     private TextView txtName;
     //HomeActivityで選択したnum
     private int num;
+    //施設住所、電話、URL
+    private String address = null;
+    private String tel = null;
+    private String url = null;
+    private TextView txtAddress;
+    private TextView txtTel;
+    private TextView txtUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,18 @@ public class FacilityActivity extends AppCompatActivity {
         txtName.setText(name);
         //同じくnum
         num = intent.getIntExtra("num", 0);
+        //住所
+        address = "住所:"+intent.getStringExtra("address");
+        txtAddress = (TextView)findViewById(R.id.txtFacilityAddress);
+        txtAddress.setText(address);
+        //電話
+        tel = "電話:"+intent.getStringExtra("tel");
+        txtTel = (TextView)findViewById(R.id.txtFacilityTel);
+        txtTel.setText(tel);
+        //施設情報
+        url = intent.getStringExtra("url");
+        //ボタン初期化
+        initButton();
 
         //読み込み
         loadCSV("data2017.csv");
@@ -70,7 +91,23 @@ public class FacilityActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 showEventData(id);
-                Toast.makeText(FacilityActivity.this, "タップされました:id="+String.valueOf(id), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FacilityActivity.this, "タップされました:id="+String.valueOf(id), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void initButton(){
+        findViewById(R.id.btnUrl).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (url.equals("")) {
+                    Toast.makeText(FacilityActivity.this, "詳細情報URLがありません", Toast.LENGTH_SHORT).show();
+                } else {
+                    //オーパス等へジャンプ
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -80,14 +117,13 @@ public class FacilityActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(mEventData[i].name);
         String s;
-        s = mEventData[i].date+"\n"+mEventData[i].time+"\n"+mEventData[i].facility+"\n"+mEventData[i].submit+"\n"+mEventData[i].fee+"\n"+mEventData[i].target+"\n"+mEventData[i].station+"\n"+mEventData[i].address;
+        s = "開催日:"+mEventData[i].date+"\n時間:"+mEventData[i].time+"\n場所:"+mEventData[i].facility+"\n内容:"+mEventData[i].top+"\n申込方法:"+mEventData[i].submit+"\n参加費:"+mEventData[i].fee+"\n参加対象:"+mEventData[i].target+"\n最寄駅:"+mEventData[i].station+"\n所在地:"+mEventData[i].address+"\n問い合わせ:"+mEventData[i].question;
         builder.setMessage(s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
         builder.create();
         builder.show();
     }
-
 
     public void loadCSV(String filename){
         InputStream is = null;

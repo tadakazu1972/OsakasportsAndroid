@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
         android:id="@+id/txtFacilityName"
         android:layout_width="match_parent"
@@ -10,13 +10,69 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:background="#bcbcbc"
+        android:textColor="#111111"
+        android:background="#cccccc"
         android:padding="8dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="start"
+        android:text="場所について"
+        android:textColor="#fefefe"
+        android:background="#9a9a9a"
+        android:padding="8dp"/>
+    <TextView
+        android:id="@+id/txtFacilityAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="start"
+        android:textColor="#111111"
+        android:padding="8dp"/>
+    <TextView
+        android:id="@+id/txtFacilityTel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="start"
+        android:textColor="#111111"
+        android:padding="8dp"/>
+    <Button
+        android:id="@+id/btnUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="施設の詳細情報を見る"
+        android:textSize="18sp"
+        android:textColor="#fefefe"
+        android:backgroundTint="#6666ee"/>
+    <Button
+        android:id="@+id/btnDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="マップで行き方を見る"
+        android:textSize="18sp"
+        android:textColor="#fefefe"
+        android:backgroundTint="#6666ee"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="start"
+        android:text="イベント一覧"
+        android:textColor="#fefefe"
+        android:background="#9a9a9a"
+        android:padding="8dp"/>
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"/>
-
 </LinearLayout>

@@ -11,8 +11,11 @@ public class Facility {
     protected double lat;
     protected double lng;
     protected boolean[] category = new boolean[12];
+    protected String address;
+    protected String tel;
+    protected String url;
 
-    public Facility(String _name, String _lat, String _lng, String _cat0, String _cat1, String _cat2, String _cat3, String _cat4, String _cat5, String _cat6, String _cat7, String _cat8, String _cat9, String _cat10, String _cat11){
+    public Facility(String _name, String _lat, String _lng, String _cat0, String _cat1, String _cat2, String _cat3, String _cat4, String _cat5, String _cat6, String _cat7, String _cat8, String _cat9, String _cat10, String _cat11, String _address, String _tel, String _url){
         name = _name;
         lat = parseDouble(_lat);
         lng = parseDouble(_lng);
@@ -28,5 +31,8 @@ public class Facility {
         if (_cat9.equals("1")) { category[9] = true; } else { category[9] = false; }
         if (_cat10.equals("1")) { category[10] = true; } else { category[10] = false; }
         if (_cat11 != null) { category[11] = true; } else { category[11] = false; }
+        address = _address;
+        tel = _tel;
+        url = _url;
     }
 }

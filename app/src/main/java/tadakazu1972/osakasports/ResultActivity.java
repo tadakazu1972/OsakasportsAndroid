@@ -54,7 +54,7 @@ public class ResultActivity extends AppCompatActivity {
         fromMonth = intent.getIntExtra("fromMonth", 10);
         fromDate  = intent.getIntExtra("fromDate",  1);
         toMonth = intent.getIntExtra("toMonth", 11);
-        toDate  = intent.getIntExtra("toDate", 23);
+        toDate  = intent.getIntExtra("toDate", 24);
         facility = intent.getStringExtra("facility");
         category = intent.getStringExtra("category");
         freeword = intent.getStringExtra("freeword");
@@ -70,6 +70,7 @@ public class ResultActivity extends AppCompatActivity {
         ArrayList<EventData> list = new ArrayList<>();
         //読み込み完了していればデータを貼り付け
         if (mLoadCSV) {
+
             //日付処理:引き継いだパラメータから検索開始日と検索終了日をDate型でつくり、csvから開催日をDate型をつくり、比較させる
             Calendar calendar1 = Calendar.getInstance();
             calendar1.set(Calendar.YEAR, 2017);
@@ -84,7 +85,6 @@ public class ResultActivity extends AppCompatActivity {
             Date date2 = calendar2.getTime();
 
             for (int i=0; i<mEventData.length-1; i++) {
-
                 String tempDateStr = mEventData[i].date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
                 Log.d("tempDateStr",tempDateStr);
                 String[] tempDatePair = tempDateStr.split("/");
@@ -150,7 +150,7 @@ public class ResultActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(mEventData[i].name);
         String s;
-        s = mEventData[i].date+"\n"+mEventData[i].time+"\n"+mEventData[i].facility+"\n"+mEventData[i].submit+"\n"+mEventData[i].fee+"\n"+mEventData[i].target+"\n"+mEventData[i].station+"\n"+mEventData[i].address;
+        s = "開催日:"+mEventData[i].date+"\n時間:"+mEventData[i].time+"\n場所:"+mEventData[i].facility+"\n内容:"+mEventData[i].top+"\n申込方法:"+mEventData[i].submit+"\n参加費:"+mEventData[i].fee+"\n参加対象:"+mEventData[i].target+"\n最寄駅:"+mEventData[i].station+"\n所在地:"+mEventData[i].address+"\n問い合わせ:"+mEventData[i].question;
         builder.setMessage(s);
         builder.setNegativeButton("キャンセル", null);
         builder.setCancelable(true);
@@ -176,10 +176,43 @@ public class ResultActivity extends AppCompatActivity {
             } finally {
                 if ( is != null ) is.close();
                 //Toast.makeText(this, String.valueOf(i)+"行を読込成功", Toast.LENGTH_LONG).show();
+                //sortEventData();
                 mLoadCSV = true; //読み込み完了フラグON
             }
         } catch (Exception e) {
             Toast.makeText(this, "CSV読込エラー"+e, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void sortEventData(){
+        EventData tempEventData;
+        int u, v;
+        for (u=0; u<198; u++){
+            for (v=198; v>u; v--){
+                //読み込んだデータの日付生成
+                String tempDate1Str = mEventData[v].date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
+                //Log.d("tempDateStr",tempDate1Str);
+                String[] tempDate1Pair = tempDate1Str.split("/");
+                Calendar tempCalendar1 = Calendar.getInstance();
+                tempCalendar1.set(Calendar.YEAR, 2017);
+                tempCalendar1.set(Calendar.MONTH, parseInt(tempDate1Pair[0])-1);
+                tempCalendar1.set(Calendar.DATE, parseInt(tempDate1Pair[1]));
+                Date tempDate1 = tempCalendar1.getTime();
+                //１つ前のデータの日付生成
+                String tempDate2Str = mEventData[v-1].date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
+                //Log.d("tempDateStr",tempDate2Str);
+                String[] tempDate2Pair = tempDate2Str.split("/");
+                Calendar tempCalendar2 = Calendar.getInstance();
+                tempCalendar2.set(Calendar.YEAR, 2017);
+                tempCalendar2.set(Calendar.MONTH, parseInt(tempDate2Pair[0])-1);
+                tempCalendar2.set(Calendar.DATE, parseInt(tempDate2Pair[1]));
+                Date tempDate2 = tempCalendar2.getTime();
+                if (tempDate1.compareTo(tempDate2)<0){
+                    tempEventData = mEventData[v];
+                    mEventData[v] = mEventData[v-1];
+                    mEventData[v-1] = tempEventData;
+                }
+            }
         }
     }
 }

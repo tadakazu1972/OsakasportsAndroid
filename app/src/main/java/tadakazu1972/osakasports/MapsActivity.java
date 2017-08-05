@@ -90,6 +90,9 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
     public boolean onMarkerClick(final Marker marker){
         Integer i = (Integer)marker.getTag();
         String name = mFacility[i].name;
+        String address = mFacility[i].address;
+        String tel = mFacility[i].tel;
+        String url = mFacility[i].url;
 
         Toast.makeText(this, marker.getTitle()+"がクリックされた", Toast.LENGTH_SHORT).show();
 
@@ -97,6 +100,9 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
         //該当イベント判定用
         intent.putExtra("name", name); //施設名
         intent.putExtra("num", num); //Homeから受け継いだnumをさらに次へ渡す
+        intent.putExtra("address", address);
+        intent.putExtra("tel", tel);
+        intent.putExtra("url", url);
         startActivity(intent);
 
         // Return false to indicate that we have not consumed the event and that we wish
@@ -116,7 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
                 CSVReader csvr = new CSVReader(ir, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1); //ヘッダー0行読み込まないため1行から
                 String[] csv;
                 while((csv = csvr.readNext()) != null){
-                    mFacility[i] = new Facility(csv[0], csv[1], csv[2], csv[3], csv[4], csv[5], csv[6], csv[7], csv[8], csv[9], csv[10], csv[11], csv[12], csv[13], csv[14]);
+                    mFacility[i] = new Facility(csv[0], csv[1], csv[2], csv[3], csv[4], csv[5], csv[6], csv[7], csv[8], csv[9], csv[10], csv[11], csv[12], csv[13], csv[14], csv[15], csv[16], csv[17]);
                     i++;
                 }
             } finally {
