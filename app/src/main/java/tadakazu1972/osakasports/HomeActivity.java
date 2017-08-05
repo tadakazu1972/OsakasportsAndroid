@@ -28,18 +28,78 @@ public class HomeActivity extends AppCompatActivity {
 
     //ボタン設定
     private void initButtons(){
-        //
-        mView.findViewById(R.id.btnTaiken).setOnClickListener(new OnClickListener(){
+        //btn1
+        mView.findViewById(R.id.btn1).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, MapsActivity.class);
                 //マーカー色判定用
-                intent.putExtra("num",10);
+                intent.putExtra("num",0);
                 startActivity(intent);
             }
         });
-        //
-        mView.findViewById(R.id.btnWakaimon).setOnClickListener(new OnClickListener(){
+        //btn2
+        mView.findViewById(R.id.btn2).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",1);
+                startActivity(intent);
+            }
+        });
+        //btn3
+        mView.findViewById(R.id.btn3).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",2);
+                startActivity(intent);
+            }
+        });
+        //btn4
+        mView.findViewById(R.id.btn4).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",3);
+                startActivity(intent);
+            }
+        });
+        //btn5
+        mView.findViewById(R.id.btn5).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",4);
+                startActivity(intent);
+            }
+        });
+        //btn6
+        mView.findViewById(R.id.btn6).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",5);
+                startActivity(intent);
+            }
+        });
+        //btn7
+        mView.findViewById(R.id.btn7).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",6);
+                startActivity(intent);
+            }
+        });
+        //btn8
+        mView.findViewById(R.id.btn8).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, MapsActivity.class);
@@ -48,8 +108,18 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //
-        mView.findViewById(R.id.btnKodomo).setOnClickListener(new OnClickListener(){
+        //btn9
+        mView.findViewById(R.id.btn9).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",8);
+                startActivity(intent);
+            }
+        });
+        //btn10
+        mView.findViewById(R.id.btn10).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mActivity, MapsActivity.class);
@@ -58,6 +128,27 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //btn11
+        mView.findViewById(R.id.btn11).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",10);
+                startActivity(intent);
+            }
+        });
+        //btn12
+        mView.findViewById(R.id.btn12).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MapsActivity.class);
+                //マーカー色判定用
+                intent.putExtra("num",11);
+                startActivity(intent);
+            }
+        });
+        //詳細検索ボタン
         mView.findViewById(R.id.btnSearch).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){

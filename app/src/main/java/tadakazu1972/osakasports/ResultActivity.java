@@ -52,8 +52,8 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         fromMonth = intent.getIntExtra("fromMonth", 10);
         fromDate  = intent.getIntExtra("fromDate",  1);
-        toMonth = intent.getIntExtra("toMonth", 12);
-        toDate  = intent.getIntExtra("toDate", 31);
+        toMonth = intent.getIntExtra("toMonth", 11);
+        toDate  = intent.getIntExtra("toDate", 23);
         facility = intent.getStringExtra("facility");
         category = intent.getStringExtra("category");
         freeword = intent.getStringExtra("freeword");

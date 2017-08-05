@@ -23,7 +23,7 @@ import java.io.InputStreamReader;
 public class MapsActivity extends FragmentActivity implements OnMarkerClickListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private int N = 62; //施設数
+    private int N = 69; //読み込むfacilitites2017.csvの行数
     private Facility[] mFacility = new Facility[N];
     private Marker[] mMarker = new Marker[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
@@ -40,7 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
         num = intent.getIntExtra("num", 0);
 
         //施設CSVファイル読み込み
-        loadCSV("facilities.csv");
+        loadCSV("facilities2017.csv");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()

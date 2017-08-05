@@ -47,7 +47,7 @@ public class SearchActivity extends AppCompatActivity {
         mDatePickerStart = (DatePicker)findViewById(R.id.datePickerStart);
         //終了日
         mDatePickerEnd = (DatePicker)findViewById(R.id.datePickerEnd);
-        mDatePickerEnd.updateDate(2017,11,31);
+        mDatePickerEnd.updateDate(2017,10,23);
 
         //場所
         mSpnFacility = (Spinner)findViewById(R.id.spnFacility);

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class FacilityActivity extends AppCompatActivity {
 
-    private int N = 252; //イベントデータ総数
+    private int N = 200; //読み込むdata2017.csvの行数
     private EventData[] mEventData = new EventData[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
     protected ListView listView;
@@ -48,7 +48,7 @@ public class FacilityActivity extends AppCompatActivity {
         num = intent.getIntExtra("num", 0);
 
         //読み込み
-        loadCSV("data.csv");
+        loadCSV("data2017.csv");
 
         //リストビュー処理
         listView = (ListView) findViewById(R.id.listview);
