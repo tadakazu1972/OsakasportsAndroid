@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,7 +27,7 @@ import static java.lang.Integer.parseInt;
  */
 
 public class ResultActivity extends AppCompatActivity {
-    private int N = 252; //イベントデータ総数
+    private int N = 200; //イベントデータ総数
     private EventData[] mEventData = new EventData[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
     protected ListView listView;
@@ -62,7 +63,7 @@ public class ResultActivity extends AppCompatActivity {
         txtName.setText(facility+":"+category);
 
         //読み込み
-        loadCSV("data.csv");
+        loadCSV("data2017.csv");
 
         //リストビュー処理
         listView = (ListView) findViewById(R.id.listview);
@@ -84,8 +85,9 @@ public class ResultActivity extends AppCompatActivity {
 
             for (int i=0; i<mEventData.length-1; i++) {
 
-                String tempDateStr = (mEventData[i].date).substring(0, (mEventData[i].date.indexOf("日"))); //開催日の文字列『１０月１０日（祝）」から「１０月１０」だけ切り出し
-                String[] tempDatePair = tempDateStr.split("月");
+                String tempDateStr = mEventData[i].date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
+                Log.d("tempDateStr",tempDateStr);
+                String[] tempDatePair = tempDateStr.split("/");
                 Calendar calendar3 = Calendar.getInstance();
                 calendar3.set(Calendar.YEAR, 2017);
                 calendar3.set(Calendar.MONTH, parseInt(tempDatePair[0])-1);
