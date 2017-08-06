@@ -115,6 +115,7 @@ public class FacilityActivity extends AppCompatActivity {
         int i = (int)id-1; //この-1はlong idとの関係で調整いるよ
 
         Intent intent = new Intent(this, EventActivity.class);
+        intent.putExtra("id", String.valueOf(id));
         intent.putExtra("name", mEventData[i].name);
         intent.putExtra("date", mEventData[i].date);
         intent.putExtra("time", mEventData[i].time);

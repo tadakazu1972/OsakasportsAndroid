@@ -58,7 +58,7 @@
         android:text="マップで行き方を見る"
         android:textSize="18sp"
         android:textColor="#fefefe"
-        android:backgroundTint="#6666ee"/>
+        android:backgroundTint="#efefef"/>
 
     <TextView
         android:layout_width="match_parent"

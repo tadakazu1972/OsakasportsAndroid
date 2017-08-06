@@ -268,5 +268,56 @@
             android:textSize="18sp"
             android:padding="2dp"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCalender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:text="Googleカレンダーに登録する"
+        android:textSize="18sp"
+        android:textColor="#fefefe"
+        android:backgroundTint="#6666ee"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnTwitter"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/twitter"/>
+        <ImageButton
+            android:id="@+id/btnLine"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/line"/>
+        <ImageButton
+            android:id="@+id/btnFacebook"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/facebook"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="トップへ"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_search"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"/>
 </LinearLayout>
 </ScrollView>
