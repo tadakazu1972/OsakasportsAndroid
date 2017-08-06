@@ -47,7 +47,7 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_facility);
+        setContentView(R.layout.activity_result);
 
         //SearchActivityから受け取りセット
         Intent intent = getIntent();
