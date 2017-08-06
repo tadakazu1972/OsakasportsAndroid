@@ -50,6 +50,7 @@ public class EventDataAdapter extends BaseAdapter {
 
         ((TextView)convertView.findViewById(R.id.eventDate)).setText(eventDataList.get(position).date);
         ((TextView)convertView.findViewById(R.id.eventName)).setText(eventDataList.get(position).name);
+        ((TextView)convertView.findViewById(R.id.eventContent)).setText(eventDataList.get(position).top);
 
         //動的に背景色をつける　クラスの値を操作しておくこと
         if (eventDataList.get(position).color){
