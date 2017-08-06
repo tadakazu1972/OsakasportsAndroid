@@ -30,7 +30,7 @@ public class Facility {
         if (_cat8.equals("1")) { category[8] = true; } else { category[8] = false; }
         if (_cat9.equals("1")) { category[9] = true; } else { category[9] = false; }
         if (_cat10.equals("1")) { category[10] = true; } else { category[10] = false; }
-        if (_cat11 != null) { category[11] = true; } else { category[11] = false; }
+        if (_cat11.equals("1")) { category[11] = true; } else { category[11] = false; }
         address = _address;
         tel = _tel;
         url = _url;
