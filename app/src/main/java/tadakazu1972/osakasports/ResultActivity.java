@@ -1,6 +1,5 @@
 package tadakazu1972.osakasports;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -147,15 +146,20 @@ public class ResultActivity extends AppCompatActivity {
 
     public void showEventData(long id){
         int i = (int)id-1; //この-1はlong idとの関係で調整いるよ
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(mEventData[i].name);
-        String s;
-        s = "開催日:"+mEventData[i].date+"\n時間:"+mEventData[i].time+"\n場所:"+mEventData[i].facility+"\n内容:"+mEventData[i].top+"\n申込方法:"+mEventData[i].submit+"\n参加費:"+mEventData[i].fee+"\n参加対象:"+mEventData[i].target+"\n最寄駅:"+mEventData[i].station+"\n所在地:"+mEventData[i].address+"\n問い合わせ:"+mEventData[i].question;
-        builder.setMessage(s);
-        builder.setNegativeButton("キャンセル", null);
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
+
+        Intent intent = new Intent(this, EventActivity.class);
+        intent.putExtra("name", mEventData[i].name);
+        intent.putExtra("date", mEventData[i].date);
+        intent.putExtra("time", mEventData[i].time);
+        intent.putExtra("facility", mEventData[i].facility);
+        intent.putExtra("description", mEventData[i].top);
+        intent.putExtra("submit", mEventData[i].submit);
+        intent.putExtra("fee", mEventData[i].fee);
+        intent.putExtra("target", mEventData[i].target);
+        intent.putExtra("station", mEventData[i].station);
+        intent.putExtra("address", mEventData[i].address);
+        intent.putExtra("question", mEventData[i].question);
+        startActivity(intent);
     }
 
 
