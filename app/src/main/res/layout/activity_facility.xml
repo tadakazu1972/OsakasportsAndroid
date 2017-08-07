@@ -51,14 +51,14 @@
         android:textColor="#fefefe"
         android:backgroundTint="#6666ee"/>
     <Button
-        android:id="@+id/btnDirection"
+        android:id="@+id/btnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:text="マップで行き方を見る"
         android:textSize="18sp"
         android:textColor="#fefefe"
-        android:backgroundTint="#efefef"/>
+        android:backgroundTint="#6666ee"/>
 
     <TextView
         android:layout_width="match_parent"

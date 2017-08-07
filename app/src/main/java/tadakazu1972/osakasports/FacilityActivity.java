@@ -39,7 +39,6 @@ public class FacilityActivity extends AppCompatActivity {
     private String url = null;
     private TextView txtAddress;
     private TextView txtTel;
-    private TextView txtUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +95,10 @@ public class FacilityActivity extends AppCompatActivity {
     }
 
     public void initButton(){
+        //施設の詳細情報を見る
         findViewById(R.id.btnUrl).setOnClickListener(new OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 if (url.equals("")) {
                     Toast.makeText(FacilityActivity.this, "詳細情報URLがありません", Toast.LENGTH_SHORT).show();
                 } else {
@@ -108,6 +108,17 @@ public class FacilityActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
+        });
+        //マップで場所を見る
+        findViewById(R.id.btnMap).setOnClickListener(new OnClickListener(){
+           @Override
+           public void onClick(View v){
+             //Google MapのURLへ施設名を付加してジャンプ
+             String tempURL = "https://www.google.co.jp/maps/place/"+name;
+             Uri uri = Uri.parse(tempURL);
+             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+             startActivity(intent);
+           }
         });
     }
 
