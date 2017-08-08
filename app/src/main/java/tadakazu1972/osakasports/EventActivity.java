@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import static java.lang.Integer.parseInt;
+
 /**
  * Created by tadakazu on 2017/08/06.
  */
@@ -92,7 +97,24 @@ public class EventActivity extends AppCompatActivity {
         findViewById(R.id.btnCalender).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                String url = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + name + "&dates=" + date + "&location=" + address;
+                //日付のフォーマット処理。覚悟しろよ!!
+                String tempDateStr = date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
+                String[] tempDatePair = tempDateStr.split("/");
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, 2017);
+                calendar.set(Calendar.MONTH, parseInt(tempDatePair[0])-1);
+                calendar.set(Calendar.DATE, parseInt(tempDatePair[1]));
+                SimpleDateFormat sdf = new SimpleDateFormat();
+                String dateFormat = sdf.format(calendar.getTime());
+                String[] dateStr = dateFormat.split("/");
+                //Toast.makeText(EventActivity.this, "year/month/day="+dateStr[0]+":"+dateStr[1]+":"+dateStr[2], Toast.LENGTH_SHORT).show();
+                String startDate = dateStr[0] + dateStr[1] + dateStr[2];
+                String startTime = "090000";
+                String endDate   = dateStr[0] + dateStr[1] + dateStr[2];
+                String endTime   = "180000";
+                String dates = startDate + "T" + startTime + "/" + endDate + "T" + endTime;
+
+                String url = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + name + "&dates=" + dates + "&location=" + address;
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);

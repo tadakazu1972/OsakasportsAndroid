@@ -3,7 +3,6 @@ package tadakazu1972.osakasports;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -85,7 +84,7 @@ public class ResultActivity extends AppCompatActivity {
 
             for (int i=0; i<mEventData.length-1; i++) {
                 String tempDateStr = mEventData[i].date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
-                Log.d("tempDateStr",tempDateStr);
+                //Log.d("tempDateStr",tempDateStr);
                 String[] tempDatePair = tempDateStr.split("/");
                 Calendar calendar3 = Calendar.getInstance();
                 calendar3.set(Calendar.YEAR, 2017);
