@@ -75,7 +75,8 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
                     mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).title(mFacility[i].name));
                 } else {
                     mMarker[i] = mMap.addMarker(new MarkerOptions().position(_latlng).
-                                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).
+                                        icon(BitmapDescriptorFactory.defaultMarker(170)).
+                                        alpha(0.3f).
                                         title(mFacility[i].name));
                 }
                 mMarker[i].setTag(i);
@@ -94,7 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
         String tel = mFacility[i].tel;
         String url = mFacility[i].url;
 
-        Toast.makeText(this, marker.getTitle()+"がクリックされた", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, marker.getTitle()+"がクリックされた", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, FacilityActivity.class);
         //該当イベント判定用
@@ -127,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMarkerClickListe
                 }
             } finally {
                 if ( is != null ) is.close();
-                Toast.makeText(this, String.valueOf(i)+"行を読込成功", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, String.valueOf(i)+"行を読込成功", Toast.LENGTH_LONG).show();
                 mLoadCSV = true; //読み込み完了フラグON
             }
         } catch (Exception e) {
