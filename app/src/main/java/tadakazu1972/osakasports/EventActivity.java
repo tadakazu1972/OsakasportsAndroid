@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import static java.lang.Integer.parseInt;
 
 /**
@@ -97,22 +94,21 @@ public class EventActivity extends AppCompatActivity {
         findViewById(R.id.btnCalender).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                //日付のフォーマット処理。覚悟しろよ!!
+                //日付のフォーマット処理。以下、超絶めんどくさい。覚悟しろよ!!
                 String tempDateStr = date.replaceAll("\\(.+?\\)", ""); //開催日の文字列『10/9(祝)」から「10/9」だけ切り出し　"("かっこがあるから正規表現
                 String[] tempDatePair = tempDateStr.split("/");
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.YEAR, 2017);
-                calendar.set(Calendar.MONTH, parseInt(tempDatePair[0])-1);
-                calendar.set(Calendar.DATE, parseInt(tempDatePair[1]));
-                SimpleDateFormat sdf = new SimpleDateFormat();
-                String dateFormat = sdf.format(calendar.getTime());
-                String[] dateStr = dateFormat.split("/");
-                //Toast.makeText(EventActivity.this, "year/month/day="+dateStr[0]+":"+dateStr[1]+":"+dateStr[2], Toast.LENGTH_SHORT).show();
-                String startDate = dateStr[0] + dateStr[1] + dateStr[2];
-                String startTime = "090000";
-                String endDate   = dateStr[0] + dateStr[1] + dateStr[2];
-                String endTime   = "180000";
-                String dates = startDate + "T" + startTime + "/" + endDate + "T" + endTime;
+                String tempMonth = String.valueOf(String.format("%02d", parseInt(tempDatePair[0])));
+                String tempDate  = String.valueOf(String.format("%02d", parseInt(tempDatePair[1])));
+                String startDate = "2017" + tempMonth + tempDate;
+                String endDate   = "2017" + tempMonth + tempDate;
+                //まだだ。時間の処理が残っている。ちなみに、複数時間が同一セルに記載されている場合は正しい結果にならないのであしからず。結果、終日になる。
+                String tempTimeStr = time.replaceAll(":",""); // 9:00~12:00から:を削除して900~1200に
+                String[] tempTimePair = tempTimeStr.split("~"); // 900~1200を900と1200に分割
+                String startTime = String.valueOf(String.format("%04d", parseInt(tempTimePair[0])))+"00";
+                String endTime   = String.valueOf(String.format("%04d", parseInt(tempTimePair[1])))+"00";
+                //さあ、すべてを終わらせよう
+                String dates = startDate + 'T' + startTime + '/' + endDate + 'T' + endTime;
+                //Toast.makeText(EventActivity.this, "dates="+dates, Toast.LENGTH_LONG).show();
 
                 String url = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + name + "&dates=" + dates + "&location=" + address;
                 Uri uri = Uri.parse(url);
