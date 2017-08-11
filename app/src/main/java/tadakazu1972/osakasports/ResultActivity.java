@@ -138,7 +138,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 showEventData(id);
-                Toast.makeText(ResultActivity.this, "タップされました:id="+String.valueOf(id), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ResultActivity.this, "タップされました:id="+String.valueOf(id), Toast.LENGTH_SHORT).show();
             }
         });
     }

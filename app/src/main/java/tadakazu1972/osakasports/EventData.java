@@ -27,6 +27,8 @@ public class EventData {
     protected String etc;
     protected boolean[] category = new boolean[12];
     protected Boolean color;
+    //protected String favorite;
+    //protected String submitted;
 
     public EventData(String _id, String _fileName, String _facility, String _place, String _name, String _type, String _top, String _date, String _time, String _submit, String _fee, String _target, String _station, String _address, String _tel, String _question, String _etc, String _cat0,  String _cat1, String _cat2, String _cat3, String _cat4, String _cat5, String _cat6, String _cat7, String _cat8, String _cat9, String _cat10, String _cat11) {
         id = parseLong(_id);
@@ -59,6 +61,8 @@ public class EventData {
         if (_cat10.equals("1")) { category[10] = true; } else { category[10] = false; }
         if (_cat11.equals("1")) { category[11] = true; } else { category[11] = false; }
         color = false;
+        //favorite = _favorite;
+        //submitted = _submitted;
     }
 
     protected String getAllString(){

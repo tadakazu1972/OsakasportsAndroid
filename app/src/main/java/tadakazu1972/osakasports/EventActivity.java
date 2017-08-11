@@ -1,12 +1,16 @@
 package tadakazu1972.osakasports;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static java.lang.Integer.parseInt;
 
@@ -34,6 +38,13 @@ public class EventActivity extends AppCompatActivity {
     private TextView eventAddress = null;
     private String address = null;
     private TextView eventQuestion = null;
+    private SharedPreferences sp;
+    private String favorite = null;
+    private String submitted = null;
+    private ImageButton btnFavorite = null;
+    private ImageButton btnSubmitted = null;
+    private TextView lblFavorite = null;
+    private TextView lblSubmitted = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -42,6 +53,8 @@ public class EventActivity extends AppCompatActivity {
         mActivity = this;
 
         setContentView(R.layout.activity_event);
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         //前ページから受け取り処理
         Intent intent = getIntent();
@@ -85,12 +98,81 @@ public class EventActivity extends AppCompatActivity {
         //問い合わせ
         eventQuestion = (TextView)findViewById(R.id.eventQuestion);
         eventQuestion.setText(intent.getStringExtra("question"));
+        //お気に入り登録したか
+        String favoriteStr = "favorite"+id; //探索用キーワードをイベントidと組み合わせて生成
+        favorite = sp.getString(favoriteStr, "0"); // 第２引数はkeyが存在しない時に返す初期値
+        //申込み済か
+        String submittedStr = "submitted"+id;
+        submitted = sp.getString(submittedStr, "0");
 
         //ボタン初期化
         initButtons();
     }
 
     public void initButtons(){
+        //お気に入りチェック
+        btnFavorite = (ImageButton)findViewById(R.id.btnFavorite);
+        lblFavorite = (TextView)findViewById(R.id.lblFavorite);
+        if (favorite.equals("1")){
+            btnFavorite.setImageResource(R.drawable.ic_star_yellow_24dp);
+            lblFavorite.setText("お気に入り");
+        }
+        btnFavorite.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String messageFavorite;
+                if (favorite.equals("1")){
+                    favorite = "0";
+                    //書き込み
+                    String submittedStr = "favorite"+id;
+                    sp.edit().putString(submittedStr, "0").apply();
+                    btnFavorite.setImageResource(R.drawable.ic_star_border_yellow_24dp);
+                    lblFavorite.setText("お気に入りに追加");
+                    messageFavorite = "お気に入りを解除しました";
+                } else {
+                    favorite = "1";
+                    //書き込み
+                    String submittedStr = "favorite"+id;
+                    sp.edit().putString(submittedStr, "1").apply();
+                    btnFavorite.setImageResource(R.drawable.ic_star_yellow_24dp);
+                    lblFavorite.setText("お気に入り");
+                    messageFavorite = "お気に入りに登録しました";
+                }
+                Toast.makeText(EventActivity.this, messageFavorite, Toast.LENGTH_SHORT).show();
+            }
+        });
+        //申込み済チェック
+        btnSubmitted = (ImageButton)findViewById(R.id.btnSubmitted);
+        lblSubmitted = (TextView)findViewById(R.id.lblSubmitted);
+        if (submitted.equals("1")){
+            btnSubmitted.setImageResource(R.drawable.ic_check_box_green_24dp);
+            lblSubmitted.setText("申込済");
+        }
+        btnSubmitted.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String messageSubmitted;
+                if (submitted.equals("1")){
+                    submitted = "0";
+                    //書き込み
+                    String submittedStr = "submitted"+id;
+                    sp.edit().putString(submittedStr, "0").apply();
+                    btnSubmitted.setImageResource(R.drawable.ic_check_box_outline_blank_black_24dp);
+                    lblSubmitted.setText("申込み済にする");
+                    messageSubmitted = "申込済を解除しました";
+                } else {
+                    submitted = "1";
+                    //書き込み
+                    String submittedStr = "submitted"+id;
+                    sp.edit().putString(submittedStr, "1").apply();
+                    btnSubmitted.setImageResource(R.drawable.ic_check_box_green_24dp);
+                    lblSubmitted.setText("申込済");
+                    messageSubmitted = "申込済にしました";
+                }
+                Toast.makeText(EventActivity.this, messageSubmitted, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         findViewById(R.id.btnCalender).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {

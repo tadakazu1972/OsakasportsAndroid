@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class FacilityActivity extends AppCompatActivity {
 
-    private int N = 200; //読み込むdata2017.csvの行数
+    private int N = 200; //読み込むdata2017b.csvの行数
     private EventData[] mEventData = new EventData[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
     protected ListView listView;
@@ -138,6 +138,8 @@ public class FacilityActivity extends AppCompatActivity {
         intent.putExtra("station", mEventData[i].station);
         intent.putExtra("address", mEventData[i].address);
         intent.putExtra("question", mEventData[i].question);
+        //intent.putExtra("favorite", mEventData[i].favorite);
+        //intent.putExtra("submitted", mEventData[i].submitted);
         startActivity(intent);
 
         /*
