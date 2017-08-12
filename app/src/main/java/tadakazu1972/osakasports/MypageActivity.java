@@ -1,7 +1,9 @@
 package tadakazu1972.osakasports;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,12 +30,20 @@ public class MypageActivity extends AppCompatActivity {
     private EventData[] mEventData = new EventData[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
     protected ListView listView;
+    private SharedPreferences sp;
+    String tempFavorite = null;
+    String checkFavorite = null;
+    String tempSubmitted = null;
+    String checkSubmitted = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_mypage);
+
+        //SharedPreferences初期化
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         //読み込み
         loadCSV("data2017.csv");
@@ -43,9 +53,17 @@ public class MypageActivity extends AppCompatActivity {
         ArrayList<EventData> list = new ArrayList<>();
         //読み込み完了していればデータを貼り付け
         if (mLoadCSV) {
-
+            //すべてのデータ走査
             for (int i=0; i<mEventData.length-1; i++) {
-                list.add(mEventData[i]);
+                //SharedPreferencesからチェック
+                tempFavorite = "favorite"+String.valueOf(i+1); //idは1からはじまっているから+1忘れずに
+                checkFavorite = sp.getString(tempFavorite, "0");
+                tempSubmitted = "submitted"+String.valueOf(i+1);
+                checkSubmitted = sp.getString(tempSubmitted, "0");
+                //お気に入り、申込済いずれかで1であればリストに追加して表示
+                if (checkFavorite.equals("1") || checkSubmitted.equals("1")){
+                    list.add(mEventData[i]);
+                }
             }
         }
         EventDataAdapter adapter = new EventDataAdapter(MypageActivity.this);

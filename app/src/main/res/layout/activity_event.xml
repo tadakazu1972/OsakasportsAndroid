@@ -356,16 +356,32 @@
             android:scaleType="centerInside"
             android:src="@drawable/facebook"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnHome"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="トップへ"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:background="@drawable/button_search"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="8dp"/>
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:text="トップへ"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_search"/>
+        <Button
+            android:id="@+id/btnMypage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:text="マイページ"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_search"/>
+    </LinearLayout>
 </LinearLayout>
 </ScrollView>

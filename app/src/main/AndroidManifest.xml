@@ -44,6 +44,7 @@
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".ResultActivity"></activity>
         <activity android:name=".EventActivity"></activity>
+        <activity android:name=".MypageActivity"></activity>
     </application>
 
 </manifest>

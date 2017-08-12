@@ -236,5 +236,13 @@ public class EventActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.btnMypage).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MypageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
