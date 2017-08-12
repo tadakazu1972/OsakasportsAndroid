@@ -22,6 +22,17 @@
         android:background="#99eeff"
         android:text="お気に入り、または申込済にしたイベント一覧です。"
         android:paddingTop="14dp"/>
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="トップへ"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_search"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

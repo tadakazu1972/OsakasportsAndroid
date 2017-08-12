@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class FacilityActivity extends AppCompatActivity {
 
+    private FacilityActivity mActivity;
     private int N = 200; //読み込むdata2017b.csvの行数
     private EventData[] mEventData = new EventData[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
@@ -45,6 +46,8 @@ public class FacilityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_facility);
+
+        mActivity = this;
 
         //前ページから施設名を受け取りセット
         Intent intent = getIntent();
@@ -95,6 +98,15 @@ public class FacilityActivity extends AppCompatActivity {
     }
 
     public void initButton(){
+        //トップへボタン
+        findViewById(R.id.btnHome).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //施設の詳細情報を見る
         findViewById(R.id.btnUrl).setOnClickListener(new OnClickListener(){
             @Override

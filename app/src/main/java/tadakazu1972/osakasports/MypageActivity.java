@@ -26,6 +26,7 @@ import static java.lang.Integer.parseInt;
  */
 
 public class MypageActivity extends AppCompatActivity {
+    private MypageActivity mActivity;
     private int N = 200; //イベントデータ総数
     private EventData[] mEventData = new EventData[N];
     private Boolean mLoadCSV = false; //読み込み完了判定フラグ
@@ -41,6 +42,8 @@ public class MypageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_mypage);
+
+        mActivity = this;
 
         //SharedPreferences初期化
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,6 +77,19 @@ public class MypageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 showEventData(id);
                 //Toast.makeText(ResultActivity.this, "タップされました:id="+String.valueOf(id), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        initButtons();
+    }
+
+    private void initButtons(){
+        //トップへボタン
+        findViewById(R.id.btnHome).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }
