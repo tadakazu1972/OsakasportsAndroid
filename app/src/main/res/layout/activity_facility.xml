@@ -40,6 +40,7 @@
         android:textStyle="bold"
         android:gravity="start"
         android:textColor="#111111"
+        android:autoLink="phone"
         android:padding="8dp"/>
     <Button
         android:id="@+id/btnUrl"
