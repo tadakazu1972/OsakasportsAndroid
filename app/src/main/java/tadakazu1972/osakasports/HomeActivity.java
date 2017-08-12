@@ -156,5 +156,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //マイページボタン
+        mView.findViewById(R.id.btnMypage).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mActivity, MypageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

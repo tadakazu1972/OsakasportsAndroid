@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:background="#dedede"
+        android:background="#ddeeff"
         android:padding="8dp"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:text="大阪市オータム・チャレンジ・スポーツ"/>
@@ -284,14 +284,32 @@
             android:textAlignment="center"
             android:text="習いたい!"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnSearch"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="詳細検索"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:background="@drawable/button_search"/>
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:text="詳細検索"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_search"/>
+        <Button
+            android:id="@+id/btnMypage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:text="マイページ"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_search"/>
+    </LinearLayout>
 </LinearLayout>
 </ScrollView>
