@@ -53,6 +53,9 @@ public class ResultActivity extends AppCompatActivity {
         fromDate  = intent.getIntExtra("fromDate",  1);
         toMonth = intent.getIntExtra("toMonth", 11);
         toDate  = intent.getIntExtra("toDate", 24);
+        //ちょっと訳あり処理。後のif文でDate型で比較するとき、<0を使うので当日がヒットしない。だから+1。
+        toDate = toDate + 1;
+        if (toDate > 31 ) { toDate = 31; } //ありえない日付になるのを防ぐ
         facility = intent.getStringExtra("facility");
         category = intent.getStringExtra("category");
         freeword = intent.getStringExtra("freeword");

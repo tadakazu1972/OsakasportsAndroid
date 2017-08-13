@@ -22,12 +22,24 @@
                 android:text="開始日"
                 android:textColor="#111111"
                 android:textSize="20sp"/>
-            <DatePicker
-                android:id="@+id/datePickerStart"
+            <TextView
+                android:id="@+id/txtStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text=""
+                android:textColor="#111111"
+                android:textSize="20sp"/>
+            <Button
+                android:id="@+id/btnStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日付設定"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="#fefefe"
+                android:backgroundTint="#6666ee"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -39,12 +51,24 @@
                 android:text="終了日"
                 android:textColor="#111111"
                 android:textSize="20sp"/>
-            <DatePicker
-                android:id="@+id/datePickerEnd"
+            <TextView
+                android:id="@+id/txtEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text=""
+                android:textColor="#111111"
+                android:textSize="20sp"/>
+            <Button
+                android:id="@+id/btnEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日付設定"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textColor="#fefefe"
+                android:backgroundTint="#6666ee"/>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"

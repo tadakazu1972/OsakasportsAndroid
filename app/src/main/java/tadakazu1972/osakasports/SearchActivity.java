@@ -1,16 +1,21 @@
 package tadakazu1972.osakasports;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by tadakazu on 2017/07/22.
@@ -18,8 +23,7 @@ import android.widget.Spinner;
 
 public class SearchActivity extends AppCompatActivity {
     private SearchActivity mActivity = null;
-    private DatePicker mDatePickerStart = null;
-    private DatePicker mDatePickerEnd = null;
+    private DatePicker mDatePicker = null;
     private Spinner mSpnFacility = null;
     private Spinner mSpnCategory = null;
     private EditText editFreeword = null;
@@ -27,6 +31,11 @@ public class SearchActivity extends AppCompatActivity {
     private String facility = null;
     private String category = null;
     private String freeword = "";
+    //日付設定、次ページ送り用
+    private int fromMonth =1;
+    private int fromDate  =1;
+    private int toMonth   =11;
+    private int toDate    =31;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -44,10 +53,10 @@ public class SearchActivity extends AppCompatActivity {
 
     private void initSpinner(){
         //開始日
-        mDatePickerStart = (DatePicker)findViewById(R.id.datePickerStart);
+        //mDatePickerStart = (DatePicker)findViewById(R.id.datePickerStart);
         //終了日
-        mDatePickerEnd = (DatePicker)findViewById(R.id.datePickerEnd);
-        mDatePickerEnd.updateDate(2017,10,24);
+        //mDatePickerEnd = (DatePicker)findViewById(R.id.datePickerEnd);
+        //mDatePickerEnd.updateDate(2017,10,24);
 
         //場所
         mSpnFacility = (Spinner)findViewById(R.id.spnFacility);
@@ -94,17 +103,32 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void initButtons(){
+        //開始日設定ボタン
+        findViewById(R.id.btnStartDate).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showStartDateDialog();
+            }
+        });
+        //終了日設定ボタン
+        findViewById(R.id.btnEndDate).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showEndDateDialog();
+            }
+        });
+        //検索ボタン
         findViewById(R.id.btnSearch).setOnClickListener(new OnClickListener(){
            @Override
             public void onClick(View v){
                Intent intent = new Intent(mActivity, ResultActivity.class);
-               int fromMonth = mDatePickerStart.getMonth();
+               //int fromMonth = mDatePickerStart.getMonth();
                intent.putExtra("fromMonth", fromMonth);
-               int fromDate = mDatePickerStart.getDayOfMonth();
+               //int fromDate = mDatePickerStart.getDayOfMonth();
                intent.putExtra("fromDate", fromDate);
-               int toMonth = mDatePickerEnd.getMonth();
+               //int toMonth = mDatePickerEnd.getMonth();
                intent.putExtra("toMonth", toMonth);
-               int toDate = mDatePickerEnd.getDayOfMonth();
+               //int toDate = mDatePickerEnd.getDayOfMonth();
                intent.putExtra("toDate", toDate);
                intent.putExtra("facility", facility);
                intent.putExtra("category", category);
@@ -113,5 +137,56 @@ public class SearchActivity extends AppCompatActivity {
                startActivity(intent);
            }
         });
+    }
+
+    private void showStartDateDialog(){
+        //Toast.makeText(this, "日付設定がタップされた", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.dialog_datepicker, (ViewGroup)findViewById(R.id.dlgDatePicker));
+        builder.setTitle("開始日");
+        builder.setView(layout);
+        builder.setPositiveButton("設定", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //日付表示のためテキスト放り込み先準備(注意！：こちらはactivity_search.xmlのほうを指定)
+                final TextView txtStartDate = (TextView)findViewById(R.id.txtStartDate);
+                //本日を取得してTextViewにセット
+                mDatePicker = (DatePicker)layout.findViewById(R.id.datePicker);
+                fromMonth = mDatePicker.getMonth();
+                fromDate  = mDatePicker.getDayOfMonth();
+                final String startDateStr = String.valueOf(fromMonth+1)+"月"+String.valueOf(fromDate)+"日";
+                txtStartDate.setText(startDateStr);
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
+    }
+
+    private void showEndDateDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.dialog_datepicker, (ViewGroup)findViewById(R.id.dlgDatePicker));
+        builder.setTitle("終了日");
+        builder.setView(layout);
+        builder.setPositiveButton("設定", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //日付表示のためテキスト放り込み先準備(注意！：こちらはactivity_search.xmlのほうを指定)
+                final TextView txtStartDate = (TextView)findViewById(R.id.txtEndDate);
+                //本日を取得してTextViewにセット
+                mDatePicker = (DatePicker)layout.findViewById(R.id.datePicker);
+                toMonth = mDatePicker.getMonth();
+                toDate  = mDatePicker.getDayOfMonth();
+                final String startDateStr = String.valueOf(toMonth+1)+"月"+String.valueOf(toDate)+"日";
+                txtStartDate.setText(startDateStr);
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
     }
 }
