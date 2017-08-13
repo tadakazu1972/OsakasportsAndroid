@@ -10,6 +10,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="#ffffff"
         android:padding="20dp">
         <LinearLayout
@@ -19,6 +20,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="開始日"
                 android:textColor="#111111"
                 android:textSize="20sp"/>
@@ -28,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
                 android:text=""
                 android:textColor="#111111"
                 android:textSize="20sp"/>
@@ -35,6 +38,7 @@
                 android:id="@+id/btnStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="日付設定"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -44,10 +48,12 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="終了日"
                 android:textColor="#111111"
                 android:textSize="20sp"/>
@@ -57,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
                 android:text=""
                 android:textColor="#111111"
                 android:textSize="20sp"/>
@@ -64,6 +71,7 @@
                 android:id="@+id/btnEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="日付設定"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -73,7 +81,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="場所"
+            android:layout_marginTop="28dp"
+            android:text="エリア"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"/>
@@ -85,6 +94,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="競技"
             android:textColor="#111111"
             android:textSize="20sp"
@@ -97,6 +107,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="フリーワード"
             android:textColor="#111111"
             android:textSize="20sp"
@@ -104,11 +115,13 @@
         <EditText
             android:id="@+id/freeword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="検索"
             android:textAlignment="center"
             android:textSize="20sp"

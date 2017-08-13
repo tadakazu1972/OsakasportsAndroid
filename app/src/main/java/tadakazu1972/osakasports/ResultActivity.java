@@ -115,7 +115,7 @@ public class ResultActivity extends AppCompatActivity {
                                     list.add(mEventData[i]);
                                 }
                             }
-                        } else if (facility.equals(mEventData[i].facility)){
+                        } else if (mEventData[i].address.startsWith(facility)){
                             if (category.equals("すべて")){
                                 if (freeword.equals("")){
                                     list.add(mEventData[i]);
