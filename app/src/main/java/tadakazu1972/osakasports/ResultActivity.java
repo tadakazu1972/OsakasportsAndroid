@@ -64,7 +64,7 @@ public class ResultActivity extends AppCompatActivity {
         txtName.setText(facility+":"+category);
 
         //読み込み
-        loadCSV("data2017.csv");
+        loadCSV("data2017c.csv");
 
         //リストビュー処理
         listView = (ListView) findViewById(R.id.listview);

@@ -70,7 +70,7 @@ public class FacilityActivity extends AppCompatActivity {
         initButton();
 
         //読み込み
-        loadCSV("data2017.csv");
+        loadCSV("data2017c.csv");
 
         //リストビュー処理
         listView = (ListView) findViewById(R.id.listview);

@@ -31,13 +31,19 @@ public class EventActivity extends AppCompatActivity {
     private TextView eventFacility = null;
     private String facility = null;
     private TextView eventDescription = null;
+    private String description = null;
     private TextView eventSubmit = null;
+    private String submit = null;
     private TextView eventFee = null;
+    private String fee = null;
     private TextView eventTarget = null;
+    private String target = null;
     private TextView eventStation = null;
+    private String station = null;
     private TextView eventAddress = null;
     private String address = null;
     private TextView eventQuestion = null;
+    private String question = null;
     private SharedPreferences sp;
     private String favorite = null;
     private String submitted = null;
@@ -79,18 +85,23 @@ public class EventActivity extends AppCompatActivity {
         //内容
         eventDescription = (TextView)findViewById(R.id.eventDescription);
         eventDescription.setText(intent.getStringExtra("description"));
+        description = intent.getStringExtra("description");
         //申込方法
         eventSubmit = (TextView)findViewById(R.id.eventSubmit);
         eventSubmit.setText(intent.getStringExtra("submit"));
+        submit = intent.getStringExtra("submit");
         //参加費
         eventFee = (TextView)findViewById(R.id.eventFee);
         eventFee.setText(intent.getStringExtra("fee"));
+        fee = intent.getStringExtra("fee");
         //参加対象
         eventTarget = (TextView)findViewById(R.id.eventTarget);
         eventTarget.setText(intent.getStringExtra("target"));
+        target = intent.getStringExtra("target");
         //最寄駅
         eventStation = (TextView)findViewById(R.id.eventStation);
         eventStation.setText(intent.getStringExtra("station"));
+        station = intent.getStringExtra("station");
         //所在地
         eventAddress = (TextView)findViewById(R.id.eventAddress);
         eventAddress.setText(intent.getStringExtra("address"));
@@ -98,6 +109,7 @@ public class EventActivity extends AppCompatActivity {
         //問い合わせ
         eventQuestion = (TextView)findViewById(R.id.eventQuestion);
         eventQuestion.setText(intent.getStringExtra("question"));
+        question = intent.getStringExtra("question");
         //お気に入り登録したか
         String favoriteStr = "favorite"+id; //探索用キーワードをイベントidと組み合わせて生成
         favorite = sp.getString(favoriteStr, "0"); // 第２引数はkeyが存在しない時に返す初期値
@@ -202,7 +214,7 @@ public class EventActivity extends AppCompatActivity {
         findViewById(R.id.btnTwitter).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                String url = "https://twitter.com/share?url=https://osakasports.azurewebsites.net/event.html?id="+id+"&text=【大阪市オータムチャレンジスポーツ2017】" + name + "/" + date + "/" + time;
+                String url = "https://twitter.com/share?url=https://osakasports.azurewebsites.net/event.html?id="+id+"&text=【大阪市オータムチャレンジスポーツ2017】" + name + "/" + date + "/" + time + "/" + facility;
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
@@ -212,7 +224,7 @@ public class EventActivity extends AppCompatActivity {
         findViewById(R.id.btnLine).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                String url = "http://line.me/R/msg/text/?https://osakasports.azurewebsites.net/event.html?id="+id+"【大阪市オータムチャレンジスポーツ2017】" + name + "/" + date + "/" + time;
+                String url = "http://line.me/R/msg/text/?【イベント名】" + name + "%0A【開催日】" + date + "%0A【時間】" + time + "%0A【場所】" + facility + "(最寄り駅:"+ station + ")%0A【内容】" + description + "%0A【参加費】" + fee + "%0A【参加対象】" + target + "%0A【申込方法】" + submit + "%0A【問い合わせ先】" + question + "%0A★★オータム・チャレンジ・スポーツ2017ーこの秋から始めようスポーツライフ！ー★★%0A9月から11月の3ヶ月間、大阪市内各所で様々なスポーツを楽しめる参加型イベントを開催します！%0Aアプリのダウンロードはこちらから。%0Ahttps://civictechosaka.wixsite.com/undobusoku";
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
